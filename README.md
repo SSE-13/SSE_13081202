@@ -19,28 +19,27 @@
     main()
     {
     	float s[NUM]={0};
-	    int i=0,j,min;
-	    float a,b,c,d,temp,ava;
-	    printf("Please enter %d students' grade:\n",NUM);
-	    for(i=0;i<NUM;i++){
-	    	scanf("%f%f%f%f",&a,&b,&c,&d);
-	    	ava=(a+b+c+d)/4;
-	    	s[i]=ava;
-    	}
-    	for(i=0;i<NUM-1;i++){
-	      min=i;
-	    for(j=i+1;j<NUM;j++){
-		    if(s[j]<s[min])
-		      min=j;
-		    }
-		    if(min!=i){
-		    	temp=s[i];
-		    	s[i]=s[min];
-		    	s[min]=temp;
-	    	}
-    	}
-    	printf("\nOrdering list is:\n");
-    	for(i=0;i<NUM;i++)
-	    printf("%f\n",s[i]);
-    }
-
+	int i=0,j,min;
+	float a,b,c,d,temp,ava;
+	printf("Please enter %d students' grade:\n",NUM);
+	for(i=0;i<NUM;i++){
+		scanf("%f%f%f%f",&a,&b,&c,&d);
+		ava=(a+b+c+d)/4;
+		s[i]=ava;
+	}
+	for(i=0;i<NUM-1;i++){
+		min=i;
+		for(j=i+1;j<NUM;j++){
+			if(s[j]<s[min])
+				min=j;
+		}
+		if(min!=i){
+			temp=s[i];
+			s[i]=s[min];
+			s[min]=temp;
+		}
+	}
+	printf("\nOrdering list is:\n");
+	for(i=0;i<NUM;i++)
+		printf("%f\n",s[i]);
+}
