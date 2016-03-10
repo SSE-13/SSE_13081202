@@ -111,9 +111,9 @@ rect.color = '#bdeed5'
 
 var rect2 = new Rect();
 rect2.width = 245;
-rect2.height = 150;
+rect2.height = 180;
 rect2.x = 0;
-rect2.y = 80;
+rect2.y = 65;
 rect2.color = '#ebe6d8'
 
 var rect3 = new Rect();
@@ -138,7 +138,7 @@ bitmap2.y = 280;
 
 var bitmap3 = new Bitmap();
 bitmap3.source = 'start_icon.png';
-bitmap3.x = 50;
+bitmap3.x = 55;
 bitmap3.y = 240;
 
 var bitmap4 = new Bitmap();
