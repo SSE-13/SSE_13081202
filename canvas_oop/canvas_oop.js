@@ -96,22 +96,29 @@ function loadResource(imageList, callback) {
 var canvas = document.getElementById("game");
 var context = canvas.getContext("2d");
 var rect = new Rect();
-rect.width = 200;
-rect.height = 100;
-rect.color = '#00FF00';
+rect.width = 245;
+rect.height = 400;
+rect.color = '#bdeed5';
 var rect2 = new Rect();
-rect2.width = 300;
+rect2.width = 245;
+rect2.height = 180;
+rect2.x = 0;
+rect2.y = 60;
+rect2.color = '#ebe6d8';
+var rect3 = new Rect();
+rect2.width = 225;
 rect2.height = 50;
-rect2.x = 200;
-rect2.y = 200;
-rect2.rotation = Math.PI / 8;
-rect2.color = '#00FFFF';
-var text = new TextField();
-text.x = 10;
+rect2.x = 10;
+rect2.y = 320;
+rect2.color = '#0072bb';
+//var text = new TextField();
+//text.x = 10;
 var bitmap = new Bitmap();
-bitmap.source = 'wander-icon.jpg';
+bitmap.source = 'clear_icon.jpg';
+bitmap.x = 90;
+bitmap.y = 90;
 //渲染队列
-var renderQueue = [rect, rect2, text, bitmap];
+var renderQueue = [rect, rect2, bitmap];
 //资源加载列表
 var imageList = ['wander-icon.jpg'];
 //先加载资源，加载成功之后执行渲染队列
