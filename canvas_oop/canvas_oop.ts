@@ -111,30 +111,47 @@ rect.color = '#bdeed5'
 
 var rect2 = new Rect();
 rect2.width = 245;
-rect2.height = 180;
+rect2.height = 150;
 rect2.x = 0;
-rect2.y = 60;
+rect2.y = 80;
 rect2.color = '#ebe6d8'
 
 var rect3 = new Rect();
-rect2.width = 225;
-rect2.height = 50;
-rect2.x = 10;
-rect2.y = 320;
-rect2.color = '#0072bb'
+rect3.width = 225;
+rect3.height = 50;
+rect3.x = 10;
+rect3.y = 320;
+rect3.color = '#0072bb'
 
 //var text = new TextField();
 //text.x = 10;
 
 var bitmap = new Bitmap();
-bitmap.source = 'clear_icon.jpg';
-bitmap.x = 90;
-bitmap.y = 90;
+bitmap.source = 'clear_icon.png';
+bitmap.x = 10;
+bitmap.y = 15;
+
+var bitmap2 = new Bitmap();
+bitmap2.source = 'Login_icon.png';
+bitmap2.x = 80;
+bitmap2.y = 280;
+
+var bitmap3 = new Bitmap();
+bitmap3.source = 'start_icon.png';
+bitmap3.x = 50;
+bitmap3.y = 240;
+
+var bitmap4 = new Bitmap();
+bitmap4.source = 'title_icon.png';
+bitmap4.x = 5;
+bitmap4.y = 60;
 
 //渲染队列
-var renderQueue = [rect, rect2, bitmap];
+var renderQueue = [rect, rect2, rect3, bitmap, bitmap2, bitmap3, bitmap4];
 //资源加载列表
-var imageList = ['wander-icon.jpg'];
+var imageList = ['clear_icon.png', 'Login_icon.png', 'start_icon.png', 'title_icon.png'];
+
+
 
 //先加载资源，加载成功之后执行渲染队列
 loadResource(imageList, function() {
