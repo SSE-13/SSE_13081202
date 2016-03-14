@@ -13,6 +13,7 @@ const BOUNCE = 0.95;
 
 const minSpeed = 0.5;
 
+const f = 0.1;
 /**
  * 计时器系统
  */
@@ -70,6 +71,7 @@ class Body {
         if (this.isGrouded) {
             this.vy = 0;
             this.x += duringTime * this.vx;
+            this.vx -= this.vx * f;
             this.y = BOUNDS_BOTTOM - this.height;
         }
         //反弹

@@ -6,8 +6,8 @@ var BOUNDS_BOTTOM = 400;
 var BOUNDS_LEFT = 0;
 var BOUNDS_RIGHT = 400;
 var BOUNCE = 0.95;
-var F = 1;
 var minSpeed = 0.5;
+var f = 0.1;
 /**
  * 计时器系统
  */
@@ -55,6 +55,7 @@ var Body = (function () {
         if (this.isGrouded) {
             this.vy = 0;
             this.x += duringTime * this.vx;
+            this.vx -= this.vx * f;
             this.y = BOUNDS_BOTTOM - this.height;
         }
         //反弹
