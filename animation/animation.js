@@ -7,7 +7,7 @@ var BOUNDS_LEFT = 0;
 var BOUNDS_RIGHT = 400;
 var BOUNCE = 0.95;
 var minSpeed = 0.5;
-var f = 0.1;
+var f = 0.01;
 /**
  * 计时器系统
  */

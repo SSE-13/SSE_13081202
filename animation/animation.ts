@@ -13,7 +13,7 @@ const BOUNCE = 0.95;
 
 const minSpeed = 0.5;
 
-const f = 0.1;
+const f = 0.01;
 /**
  * 计时器系统
  */
