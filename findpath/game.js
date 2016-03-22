@@ -65,6 +65,9 @@ var game;
         __extends(BoyBody, _super);
         function BoyBody() {
             _super.apply(this, arguments);
+            this.xA = new Array();
+            this.yA = new Array();
+            this.s = 1;
         }
         BoyBody.prototype.run = function (grid) {
             grid.setStartNode(0, 0);
@@ -73,10 +76,20 @@ var game;
             findpath.setHeurisitic(findpath.diagonal);
             var result = findpath.findPath(grid);
             var path = findpath._path;
+            for (var i = 0; i < path.length; i++) {
+                this.xA[i] = path[i].x;
+                this.yA[i] = path[i].y;
+            }
             console.log(path);
             console.log(grid.toString());
         };
         BoyBody.prototype.onTicker = function (duringTime) {
+            if (this.x < NUM_ROWS * GRID_PIXEL_WIDTH && this.y < NUM_COLS * GRID_PIXEL_HEIGHT) {
+                this.x = this.xA[this.s] * GRID_PIXEL_WIDTH;
+                this.y = this.yA[this.s] * GRID_PIXEL_HEIGHT;
+                this.s++;
+                console.log(this.x, this.y);
+            }
         };
         return BoyBody;
     }(Body));

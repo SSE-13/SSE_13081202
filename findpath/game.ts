@@ -60,7 +60,10 @@ module game {
     }
 
     export class BoyBody extends Body {
-
+     
+        xA = new Array();
+        yA = new Array();
+        s = 1;
 
         public run(grid) {
             grid.setStartNode(0, 0);
@@ -69,15 +72,26 @@ module game {
             findpath.setHeurisitic(findpath.diagonal);
             var result = findpath.findPath(grid);
             var path = findpath._path;
+            for (var i = 0; i < path.length; i++) {
+                this.xA[i] = path[i].x;
+                this.yA[i] = path[i].y;
+            }
+
             console.log(path);
             console.log(grid.toString());
         }
 
         public onTicker(duringTime) {
-
+            if (this.x < NUM_ROWS * GRID_PIXEL_WIDTH && this.y < NUM_COLS * GRID_PIXEL_HEIGHT) {
+                this.x = this.xA[this.s] * GRID_PIXEL_WIDTH;
+                this.y = this.yA[this.s] * GRID_PIXEL_HEIGHT;
+                this.s++;
+                console.log(this.x, this.y);
+            }
         }
     }
 }
+
 
 
 
