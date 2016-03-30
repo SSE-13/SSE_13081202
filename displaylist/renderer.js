@@ -32,7 +32,7 @@ var render;
             else {
                 //TODO:
                 // GLOBAL_MATRIX = PARENT_GLOBAL_MATRIX * LOCAL_MATRIX
-                this.globalMatrix = matrixAM(localMatrix, parent.globalMatrix);
+                this.globalMatrix = matrixA(localMatrix, parent.globalMatrix);
             }
             context.setTransform(this.globalMatrix.a, this.globalMatrix.b, this.globalMatrix.c, this.globalMatrix.d, this.globalMatrix.tx, this.globalMatrix.ty);
             this.render(context);
@@ -42,11 +42,12 @@ var render;
         return DisplayObject;
     }());
     render.DisplayObject = DisplayObject;
-    function matrixAM(MA, MB) {
+    function matrixA(MA, MB) {
         var M = new render.Matrix();
-        MA.a = MA.a * MB.a + MA.b * MB.c;
+        M.a = MA.a * MB.a + MA.b * MB.c;
         M.b = MA.a * MB.b + MA.b * MB.d;
         M.c = MA.d * MB.c + MA.c * MB.a;
+        M.d = MA.c * MB.b + MA.d * MB.d;
         M.tx = MA.tx * MB.a + MA.ty * MB.c + MB.tx;
         M.ty = MA.ty * MB.d + MA.tx * MB.b + MB.ty;
         return M;

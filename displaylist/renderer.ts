@@ -43,7 +43,7 @@ module render {
             else {
                 //TODO:
                 // GLOBAL_MATRIX = PARENT_GLOBAL_MATRIX * LOCAL_MATRIX
-                this.globalMatrix = matrixAM(localMatrix, parent.globalMatrix);
+                this.globalMatrix = matrixA(localMatrix, parent.globalMatrix);
             }
 
 
@@ -63,12 +63,13 @@ module render {
         }
     }
 
-    function matrixAM(MA: Matrix, MB: Matrix): Matrix {
+    function matrixA(MA: Matrix, MB: Matrix): Matrix {
         var M = new Matrix();
 
-        MA.a = MA.a * MB.a + MA.b * MB.c;
+        M.a = MA.a * MB.a + MA.b * MB.c;
         M.b = MA.a * MB.b + MA.b * MB.d;
         M.c = MA.d * MB.c + MA.c * MB.a;
+        M.d = MA.c * MB.b + MA.d * MB.d;
         M.tx = MA.tx * MB.a + MA.ty * MB.c + MB.tx;
         M.ty = MA.ty * MB.d + MA.tx * MB.b + MB.ty;
 
