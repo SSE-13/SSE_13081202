@@ -60,6 +60,8 @@ eventCore.init();
 
 var Head = 0;
 var CHead = false;
+var Leg = 0;
+var CLeg = false;
 
 var headHitTest = (localPoint:math.Point,displayObject:render.DisplayObject) =>{
     alert (`点击位置为${localPoint.x},${localPoint.y}`);
@@ -74,6 +76,18 @@ var headHitTest = (localPoint:math.Point,displayObject:render.DisplayObject) =>{
     return CHead;
     
   
+}
+
+var LegHitTest = (localPoint: math.Point, displayObject: render.DisplayObject) => {
+    console.log(localPoint);
+
+    if (localPoint.x > 0 && localPoint.x <= Math.abs(displayObject.x * 2) && localPoint.y > 0 && localPoint.y < Math.abs(displayObject.y * 2)) {
+        Leg += 1;
+        CLeg = true;
+    }
+
+    return CLeg;
+
 }
 
 var headOnClick = () => {
@@ -96,7 +110,27 @@ var headOnClick = () => {
     CHead = false;
 }
 
-eventCore.register(head,headHitTest,headOnClick);
+var LegOnClick = () => {
+
+    if (Leg == 1) {
+
+        body.vx = 0;
+        body.V = 0;
+        body.rotation = 0;
+    }
+    if (Leg >= 1) {
+
+        Leg = 0;
+    }
+    CLeg = false;
+   
+
+
+}
+
+eventCore.register(head, headHitTest, headOnClick);
+eventCore.register(leftleg, LegHitTest, LegOnClick);
+eventCore.register(rightleg, LegHitTest, LegOnClick);
 
 
 
