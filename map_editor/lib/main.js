@@ -27,12 +27,33 @@ function createMapEditor() {
     }
     return world;
 }
+var SaveHitTest = (localPoint, displayObject) => {
+    if (localPoint.x >= 0 && localPoint.x <= 100 && localPoint.y >= 0 && localPoint.y <= 50)
+        return true;
+};
 function onTileClick(tile) {
-    console.log(tile);
+    console.log(tile.ownedRow + " " + tile.ownedCol + " " + mapData[tile.ownedRow][tile.ownedCol]);
+    mapData[tile.ownedRow][tile.ownedCol] = mapData[tile.ownedRow][tile.ownedCol] ? 0 : 1;
+    tile.setWalkable(mapData[tile.ownedRow][tile.ownedCol]);
+    console.log(tile.ownedRow + " " + tile.ownedCol + " " + mapData[tile.ownedRow][tile.ownedCol]);
 }
 var mapData = readFile();
 var renderCore = new render.RenderCore();
 var eventCore = new events.EventCore();
 eventCore.init();
+var mainContainer = new render.DisplayObjectContainer();
+var button = new render.Rect();
+mainContainer.addChild(button);
+button.x = 200;
+button.y = 200;
+button.width = 80;
+button.height = 80;
+var textButton = new render.TextField();
+mainContainer.addChild(textButton);
+textButton.text = "save";
+textButton.x = 100;
+textButton.y = 100;
 var editor = createMapEditor();
-renderCore.start(editor);
+mainContainer.addChild(textButton);
+mainContainer.addChild(editor);
+renderCore.start(mainContainer);
