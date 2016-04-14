@@ -7,6 +7,14 @@ function readFile() {
     var mapData = obj.map;
     return mapData;
 }
+function writeFile() {
+    console.log(mapData);
+    var map_path = __dirname + "/map.json";
+    var json = "{\"map\":" + JSON.stringify(mapData) + "}";
+    console.log(json);
+    fs.writeFileSync(map_path, json, "utf-8");
+    console.log("saved");
+}
 function createMapEditor() {
     var world = new editor.WorldMap();
     var rows = mapData.length;
@@ -37,6 +45,10 @@ function onTileClick(tile) {
     tile.setWalkable(mapData[tile.ownedRow][tile.ownedCol]);
     console.log(tile.ownedRow + " " + tile.ownedCol + " " + mapData[tile.ownedRow][tile.ownedCol]);
 }
+function onSaveClick() {
+    console.log("saving");
+    writeFile();
+}
 var mapData = readFile();
 var renderCore = new render.RenderCore();
 var eventCore = new events.EventCore();
@@ -51,9 +63,10 @@ button.height = 80;
 var textButton = new render.TextField();
 mainContainer.addChild(textButton);
 textButton.text = "save";
-textButton.x = 100;
-textButton.y = 100;
+textButton.x = 200;
+textButton.y = 200;
 var editor = createMapEditor();
 mainContainer.addChild(textButton);
 mainContainer.addChild(editor);
 renderCore.start(mainContainer);
+eventCore.register(textButton, SaveHitTest, onSaveClick);
