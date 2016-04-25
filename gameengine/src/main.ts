@@ -49,3 +49,6 @@ panel.x = 300;
 stage.addChild(panel);
 
 renderCore.start(stage);
+
+
+//ttttttttttttt
