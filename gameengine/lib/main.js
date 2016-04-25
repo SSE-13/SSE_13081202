@@ -1,3 +1,18 @@
+function readFile() {
+    var map_path = __dirname + "/map.json";
+    var content = fs.readFileSync(map_path, "utf-8");
+    var obj = JSON.parse(content);
+    var mapData = obj.map;
+    return mapData;
+}
+function writeFile() {
+    console.log(mapData);
+    var map_path = __dirname + "/map.json";
+    var json = "{\"map\":" + JSON.stringify(mapData) + "}";
+    console.log(json);
+    fs.writeFileSync(map_path, json, "utf-8");
+    console.log("saved");
+}
 function createMapEditor() {
     var world = new editor.WorldMap();
     var rows = mapData.length;
@@ -20,6 +35,17 @@ function createMapEditor() {
 }
 function onTileClick(tile) {
     console.log(tile);
+    mapData[tile.ownedRow][tile.ownedCol] = mapData[tile.ownedRow][tile.ownedCol] ? 0 : 1;
+    tile.setWalkable(mapData[tile.ownedRow][tile.ownedCol]);
+    console.log(tile.ownedRow + " " + tile.ownedCol + " " + mapData[tile.ownedRow][tile.ownedCol]);
+}
+var SaveHitTest = function (localPoint, displayObject) {
+    if (localPoint.x >= 0 && localPoint.x <= 100 && localPoint.y >= 0 && localPoint.y <= 50)
+        return true;
+};
+function onSaveClick() {
+    console.log("saving");
+    writeFile();
 }
 var storage = data.Storage.getInstance();
 storage.readFile();
@@ -27,10 +53,23 @@ var mapData = storage.mapData;
 var renderCore = new render.RenderCore();
 var eventCore = events.EventCore.getInstance();
 eventCore.init();
-var mapEditor = createMapEditor();
 var stage = new render.DisplayObjectContainer();
+var button = new render.Rect();
+stage.addChild(button);
+button.x = 600;
+button.y = 200;
+button.width = 80;
+button.height = 50;
+var saveButton = new render.TextField();
+stage.addChild(saveButton);
+saveButton.text = "save";
+saveButton.x = 600;
+saveButton.y = 200;
+var mapEditor = createMapEditor();
 stage.addChild(mapEditor);
-var panel = new editor.ControlPanel();
+stage.addChild(saveButton);
+var panel = new editor.ControlPanel(); //UI�༭��
 panel.x = 300;
 stage.addChild(panel);
 renderCore.start(stage);
+eventCore.register(saveButton, SaveHitTest, onSaveClick);
