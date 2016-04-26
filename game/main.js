@@ -27,11 +27,40 @@ function createMapEditor(MapData) {
         for (var row = 0; row < cols; row++) {
             var tile;
             //设置图片
-            if (world.grid.getWalkable(col, row)) {
-                tile = new game.Tile("road.png");
-            }
-            else {
-                tile = new game.Tile("barrier.png");
+            /*
+            if(world.grid.getWalkable(col,row)){
+                tile=new game.Tile("road.png");
+            }else{
+                tile=new game.Tile("barrier.png");
+            }*/
+            //==============================================
+            switch (mapData[row][col]) {
+                case 0:
+                    tile = new game.Tile("pic1.png");
+                    break;
+                case 1:
+                    tile = new game.Tile("pic2.png");
+                    break;
+                case 2:
+                    tile = new game.Tile("pic3.png");
+                    break;
+                case 3:
+                    tile = new game.Tile("pic4.png");
+                    break;
+                case 4:
+                    tile = new game.Tile("pic5.png");
+                    break;
+                case 5:
+                    tile = new game.Tile("pic6.png");
+                    break;
+                case 6:
+                    tile = new game.Tile("pic7.png");
+                    break;
+                case 7:
+                    tile = new game.Tile("pic8.png");
+                    break;
+                default:
+                    break;
             }
             //tile.setWalkable(mapData[row][col]);
             tile.x = col * editor.GRID_PIXEL_WIDTH;
@@ -68,9 +97,8 @@ var stage = new render.DisplayObjectContainer();
 var boyShape = new game.BoyShape();
 var body = new game.BoyBehaviour(boyShape);
 var map = createMapEditor(storage.mapData);
-//body.run(map.grid,3,3);
 stage.addChild(map);
 stage.addChild(boyShape);
 ticker.start([body]);
 ticker.onTicker();
-renderCore.start(stage, ["barrier.png", "character.png", "road.png"]);
+renderCore.start(stage, ["pic1.png", "pic2.png", "pic3.png", "pic4.png", "pic5.png", "pic6.png", "pic7.png", "pic8.png", "character.png"]);

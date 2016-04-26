@@ -29,8 +29,8 @@ module game {
             for (var i = 0; i < rows; i++) {
                 for (var j = 0; j < cols; j++) {
                     var value = mapData[i][j];
-                    //0:不可走，1:可走
-                    grid.setWalkable(j, i, value == 1 ? true : false);
+                    //0,1:可走，2,3,4，5，6，7:不可走
+                    grid.setWalkable(j, i, value <= 1 ? true : false);
                 }
             }
         }
