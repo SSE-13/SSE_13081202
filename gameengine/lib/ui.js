@@ -16,12 +16,16 @@ var ui;
             this.background.width = this.width;
             this.background.height = this.height;
             this.label = new render.TextField();
-            this.label.width = this.width;
+            //this.label.width = this.width;
             this.label.height = this.height;
             this.label.textAlign = "center";
             this.label.text = this.text;
+            //gai
+            this._source = new render.Bitmap();
+            this._source.source = "pic1.jpg";
             this.addChild(this.background);
             this.addChild(this.label);
+            this.addChild(this._source);
             eventCore.register(this, events.displayObjectRectHitTest, function () {
                 if (_this.onClick) {
                     _this.onClick();
@@ -57,6 +61,14 @@ var ui;
             set: function (value) {
                 this._height = value;
                 this.background.height = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Button.prototype, "source", {
+            //gai
+            set: function (value) {
+                this._source.source = "pic" + value + ".jpg";
             },
             enumerable: true,
             configurable: true

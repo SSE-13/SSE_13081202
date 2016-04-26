@@ -62,6 +62,21 @@ function tileState(tile) {
     Panel.addChild(Pos);
     return Panel;
 }
+var picBtn = new Array();
+function SetpicBtn() {
+    var picPanel = new render.DisplayObjectContainer();
+    for (var i = 0; i < 8; i++) {
+        picBtn[i] = new ui.Button();
+        picBtn[i].text = "P" + (i + 1);
+        picBtn[i].with = 50;
+        picBtn[i].height = 50;
+        picBtn[i].source = i + 1;
+        picBtn[i].x = (i % 4) * 133;
+        picBtn[i].y = Math.floor(i / 4) * 60;
+        picPanel.addChild(picBtn[i]);
+    }
+    return picPanel;
+}
 function onSaveClick() {
     console.log("saving");
     writeFile();
@@ -87,8 +102,13 @@ saveButton.y = 200;
 var mapEditor = createMapEditor();
 stage.addChild(mapEditor);
 stage.addChild(saveButton);
-var panel = new editor.ControlPanel(); //UI�༭��
-panel.x = 300;
-stage.addChild(panel);
+//var panel = new editor.ControlPanel();//UI�༭��
+//panel.x = 300;
+//stage.addChild(panel);
+var ResPanel = SetpicBtn();
+ResPanel.x = 0;
+ResPanel.y = 550;
+stage.addChild(ResPanel);
+renderCore.start(stage, ["pic1.jpg", "pic2.jpg", "pic3.jpg", "pic4.jpg", "pic5.jpg", "pic6.jpg", "pic7.jpg", "pic8.jpg"]);
 renderCore.start(stage);
 eventCore.register(saveButton, SaveHitTest, onSaveClick);
