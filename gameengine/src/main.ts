@@ -130,6 +130,7 @@ function picClick(tile: editor.Tile) {
 
 function radioClick(tile: editor.Tile) {
     var count = 0;
+    radioBtn.text = "可走";
     radioBtn.onClick = () =>{
         count++;
         if(count%2 == 1){

@@ -107,6 +107,7 @@ function picClick(tile) {
 }
 function radioClick(tile) {
     var count = 0;
+    radioBtn.text = "可走";
     radioBtn.onClick = function () {
         count++;
         if (count % 2 == 1) {
