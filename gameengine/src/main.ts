@@ -52,7 +52,7 @@ function onTileClick(tile: editor.Tile) {
     radioClick(tile);
     
     console.log(tile);
-    mapData[tile.ownedRow][tile.ownedCol] = mapData[tile.ownedRow][tile.ownedCol] ? 0 : 1;
+    //mapData[tile.ownedRow][tile.ownedCol] = tile.n;
     //tile.setWalkable(mapData[tile.ownedRow][tile.ownedCol]);
     console.log(tile.ownedRow + " " + tile.ownedCol + " " + mapData[tile.ownedRow][tile.ownedCol]);  
 }
@@ -97,6 +97,7 @@ function SetpicBtn() {
         picBtn[i].x = (i % 4) * 133 ;
         picBtn[i].y = Math.floor(i/4) * 60;
         picPanel.addChild(picBtn[i]);
+
     }
     return picPanel;
 }
@@ -107,41 +108,49 @@ function picClick(tile: editor.Tile) {
         var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
         invoker.setCommand(pos);
         tile.setWalkable(0);
+        mapData[tile.ownedRow][tile.ownedCol] = tile.n;
     }
     picBtn[1].onClick = () => {
         var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
         invoker.setCommand(pos);
         tile.setWalkable(1);
+        mapData[tile.ownedRow][tile.ownedCol] = tile.n;
     }
     picBtn[2].onClick = () => {
         var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
         invoker.setCommand(pos);
         tile.setWalkable(2);
+        mapData[tile.ownedRow][tile.ownedCol] = tile.n;
     }
     picBtn[3].onClick = () => {
         var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
         invoker.setCommand(pos);
         tile.setWalkable(3);
+        mapData[tile.ownedRow][tile.ownedCol] = tile.n;
     }
     picBtn[4].onClick = () => {
         var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
         invoker.setCommand(pos);
         tile.setWalkable(4);
+        mapData[tile.ownedRow][tile.ownedCol] = tile.n;
     }
     picBtn[5].onClick = () => {
         var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
         invoker.setCommand(pos);
         tile.setWalkable(5);
+        mapData[tile.ownedRow][tile.ownedCol] = tile.n;
     }
     picBtn[6].onClick = () => {
         var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
         invoker.setCommand(pos);
         tile.setWalkable(6);
+        mapData[tile.ownedRow][tile.ownedCol] = tile.n;
     }
     picBtn[7].onClick = () => {
         var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
         invoker.setCommand(pos);
         tile.setWalkable(7);
+        mapData[tile.ownedRow][tile.ownedCol] = tile.n;
     }
 }
 
@@ -171,7 +180,7 @@ function Undo() {
     var Background = new render.Rect();
     Background.width = 55;
     Background.height = 30;
-    Background.color = '#F0FF0F';
+    Background.color = '#FFF0FF';
 
     var title = new render.TextField();
     title.text = 'Undo';
@@ -225,19 +234,20 @@ invoker.init();
 var map_tile = new Array();
 
 var undo = Undo();
-undo.x = 600;
+undo.x = 650;
+undo.y = 200;
 
 var button = new render.Rect();
 stage.addChild(button);
-button.x = 600;
+button.x = 550;
 button.y = 200;
 button.width = 80;
-button.height = 50;
+button.height = 30;
 
 var saveButton = new render.TextField();
 stage.addChild(saveButton);
 saveButton.text = "save";
-saveButton.x = 600;
+saveButton.x = 550;
 saveButton.y = 200;
 
 var radioBtn = new ui.Button();
