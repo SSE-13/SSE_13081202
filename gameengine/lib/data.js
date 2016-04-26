@@ -16,7 +16,7 @@ var data;
             var obj = JSON.parse(content);
             this.mapData = obj.map;
         };
-        Storage.prototype.saveFile = function (mapData) {
+        Storage.prototype.saveFile = function () {
         };
         return Storage;
     }());

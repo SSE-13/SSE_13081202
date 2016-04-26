@@ -22,7 +22,6 @@ var ui;
             this.label.textAlign = "center";
             this.label.text = this.text;
             this._source = new render.Bitmap();
-            //this._source.source = "pic1.jpg";
             this.background.color = this._color;
             this.addChild(this.background);
             this.addChild(this.label);
@@ -68,7 +67,7 @@ var ui;
         });
         Object.defineProperty(Button.prototype, "source", {
             set: function (value) {
-                this._source.source = "pic" + value + ".jpg";
+                this._source.source = "pic" + value + ".png";
             },
             enumerable: true,
             configurable: true

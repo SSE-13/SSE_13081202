@@ -21,8 +21,8 @@ module data {
             this.mapData = obj.map;
         }
         
-        public saveFile(mapData){
- 
+        public saveFile(){
+            
         }
         
         public mapData;

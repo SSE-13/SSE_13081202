@@ -218,6 +218,6 @@ var ResPanel = SetpicBtn();
 ResPanel.x = 0;
 ResPanel.y = 550;
 stage.addChild(ResPanel);
-renderCore.start(stage, ["pic1.jpg", "pic2.jpg", "pic3.jpg", "pic4.jpg", "pic5.jpg", "pic6.jpg", "pic7.jpg", "pic8.jpg"]);
+renderCore.start(stage, ["pic1.png", "pic2.png", "pic3.png", "pic4.png", "pic5.png", "pic6.png", "pic7.png", "pic8.png"]);
 renderCore.start(stage);
 eventCore.register(saveButton, SaveHitTest, onSaveClick);

@@ -31,16 +31,13 @@ module ui {
             this._height = value;
             this.background.height = value;
         }
-        
-        public set source(value: string){
-            this._source.source = "pic" + value + ".jpg";
+        public set source(value: string) {
+            this._source.source = "pic" + value + ".png";
         }
-        
-        public set color(value: string){
+        public set color(value: string) {
             this._color = value;
             this.background.color = value;
         }
-
 
         private background: render.Rect;
         private label: render.TextField;
@@ -62,7 +59,6 @@ module ui {
             this.label.textAlign = "center";
             this.label.text = this.text;
             this._source = new render.Bitmap();
-            //this._source.source = "pic1.jpg";
             this.background.color = this._color;
             this.addChild(this.background);
             this.addChild(this.label);
