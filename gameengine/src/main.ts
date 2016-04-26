@@ -91,9 +91,13 @@ stage.addChild(mapEditor);
 stage.addChild(saveButton);
 
 
+<<<<<<< HEAD
 var panel = new editor.ControlPanel();//UI±à¼­Æ÷
 panel.x = 300;
 stage.addChild(panel);
+=======
+renderCore.start(stage,["pic1.png","pic2.png","pic3.png","pic4.png","pic5.png","pic6.png","pic7.png","pic8.png"]);
+>>>>>>> 6f4b4b29f2879735a1b89339416b86816989adbe
 
 renderCore.start(stage);
 eventCore.register(saveButton, SaveHitTest, onSaveClick);
