@@ -113,6 +113,12 @@ module render {
 
 
         source;
+        constructor(source:string)
+        {
+            super();
+            this.source=source;
+            
+        }
 
         render(context: CanvasRenderingContext2D) {
 
@@ -155,7 +161,7 @@ module render {
         /**
          * 这个"center"|"left"表示这个变量的类型是字符串，并且只允许是 center 或者 left，其他参数都会编译失败
          */
-        public textAlign: "center" | "left" = "left";
+        public textAlign: string="left";
 
         /**
          * 字体大小

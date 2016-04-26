@@ -86,8 +86,9 @@ var render;
     render.DisplayObjectContainer = DisplayObjectContainer;
     var Bitmap = (function (_super) {
         __extends(Bitmap, _super);
-        function Bitmap() {
-            _super.apply(this, arguments);
+        function Bitmap(source) {
+            _super.call(this);
+            this.source = source;
         }
         Bitmap.prototype.render = function (context) {
             var image = imagePool[this.source];

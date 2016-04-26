@@ -33,12 +33,4 @@ var editor;
         return Tile;
     }(render.Rect));
     editor.Tile = Tile;
-    var ControlPanel = (function (_super) {
-        __extends(ControlPanel, _super);
-        function ControlPanel() {
-            _super.call(this);
-        }
-        return ControlPanel;
-    }(render.DisplayObjectContainer));
-    editor.ControlPanel = ControlPanel;
 })(editor || (editor = {}));

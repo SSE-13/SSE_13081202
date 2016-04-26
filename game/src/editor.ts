@@ -44,7 +44,7 @@ module editor {
         }
     }
     
-    
+    /*
     export class ControlPanel extends render.DisplayObjectContainer {
         
         constructor(){
@@ -53,4 +53,5 @@ module editor {
         }
         
     }
+    */
 }
