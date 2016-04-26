@@ -83,8 +83,8 @@ var game;
             this.steps = 1;
             this.startX = 0;
             this.startY = 0;
-            this.finished = true;
         }
+        //public finished=true;
         BoyBehaviour.prototype.move = function (grid, row, col) {
             if (grid.getWalkable(col, row)) {
                 grid.setStartNode(this.startX, this.startY);

@@ -29,9 +29,9 @@ function createMapEditor(MapData) {
             var tile;
             //设置图片
             if(world.grid.getWalkable(col,row)){
-                tile=new game.Tile("road.jpg");
+                tile=new game.Tile("road.png");
             }else{
-                tile=new game.Tile("block.jpg");
+                tile=new game.Tile("barrier.png");
             }
             //tile.setWalkable(mapData[row][col]);
             tile.x = col * editor.GRID_PIXEL_WIDTH;
@@ -95,4 +95,4 @@ stage.addChild(map);
 stage.addChild(boyShape);
 ticker.start([body]);
 ticker.onTicker();
-renderCore.start(stage,["block.jpg","character.png","road.jpg"]);
+renderCore.start(stage,["barrier.png","character.png","road.png"]);
