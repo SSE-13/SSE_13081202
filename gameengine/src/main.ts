@@ -44,6 +44,9 @@ function createMapEditor() {
 
 
 function onTileClick(tile: editor.Tile) {
+    
+    stage.addChild(tileState(tile));
+    
     console.log(tile);
     mapData[tile.ownedRow][tile.ownedCol] = mapData[tile.ownedRow][tile.ownedCol] ? 0 : 1;
     tile.setWalkable(mapData[tile.ownedRow][tile.ownedCol]);
@@ -55,7 +58,27 @@ var SaveHitTest = (localPoint: math.Point, displayObject: render.DisplayObject) 
         return true;
 }
 
-
+function tileState(tile: editor.Tile) {
+    var Panel = new render.DisplayObjectContainer();
+    Panel.x = 550;
+    Panel.y = 50;
+    
+    var BackGround = new render.Rect();
+    BackGround.width = 150;
+    BackGround.height = 50;
+    BackGround.color = '#bee4f0';
+    Panel.addChild(BackGround);
+    
+    var x = tile.ownedRow + 1;
+    var y = tile.ownedCol + 1;
+    var Pos = new render.TextField();
+    Pos.text = "ÂùêÊ†áÔºö(" + x + "," + y + ")";
+    Pos.x = 10;
+    Pos.y = 10;
+    Panel.addChild(Pos);
+    
+    return Panel;
+}
 
 function onSaveClick() {
     console.log("saving");
@@ -91,7 +114,7 @@ stage.addChild(mapEditor);
 stage.addChild(saveButton);
 
 
-var panel = new editor.ControlPanel();//UI±‡º≠∆˜
+var panel = new editor.ControlPanel();//UIÔøΩ‡º≠ÔøΩÔøΩ
 panel.x = 300;
 stage.addChild(panel);
 

@@ -34,6 +34,7 @@ function createMapEditor() {
     return world;
 }
 function onTileClick(tile) {
+    stage.addChild(tileState(tile));
     console.log(tile);
     mapData[tile.ownedRow][tile.ownedCol] = mapData[tile.ownedRow][tile.ownedCol] ? 0 : 1;
     tile.setWalkable(mapData[tile.ownedRow][tile.ownedCol]);
@@ -43,6 +44,24 @@ var SaveHitTest = function (localPoint, displayObject) {
     if (localPoint.x >= 0 && localPoint.x <= 100 && localPoint.y >= 0 && localPoint.y <= 50)
         return true;
 };
+function tileState(tile) {
+    var Panel = new render.DisplayObjectContainer();
+    Panel.x = 550;
+    Panel.y = 50;
+    var BackGround = new render.Rect();
+    BackGround.width = 150;
+    BackGround.height = 50;
+    BackGround.color = '#bee4f0';
+    Panel.addChild(BackGround);
+    var x = tile.ownedRow + 1;
+    var y = tile.ownedCol + 1;
+    var Pos = new render.TextField();
+    Pos.text = "坐标：(" + x + "," + y + ")";
+    Pos.x = 10;
+    Pos.y = 10;
+    Panel.addChild(Pos);
+    return Panel;
+}
 function onSaveClick() {
     console.log("saving");
     writeFile();
