@@ -29,6 +29,7 @@ var editor;
         }
         Tile.prototype.setWalkable = function (value) {
             //this.color = value ? "#0000FF" : "#FF0000";
+            this.n = value;
             switch (value) {
                 case 0:
                     this.source = "pic1.jpg";

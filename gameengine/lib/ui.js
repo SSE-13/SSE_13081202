@@ -12,17 +12,18 @@ var ui;
             var _this = this;
             _super.call(this);
             this._text = "label";
+            this._color = '#FF0000';
             this.background = new render.Rect();
             this.background.width = this.width;
             this.background.height = this.height;
             this.label = new render.TextField();
-            //this.label.width = this.width;
+            this.label.width = this.width;
             this.label.height = this.height;
             this.label.textAlign = "center";
             this.label.text = this.text;
-            //gai
             this._source = new render.Bitmap();
-            this._source.source = "pic1.jpg";
+            //this._source.source = "pic1.jpg";
+            this.background.color = this._color;
             this.addChild(this.background);
             this.addChild(this.label);
             this.addChild(this._source);
@@ -66,9 +67,16 @@ var ui;
             configurable: true
         });
         Object.defineProperty(Button.prototype, "source", {
-            //gai
             set: function (value) {
                 this._source.source = "pic" + value + ".jpg";
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Button.prototype, "color", {
+            set: function (value) {
+                this._color = value;
+                this.background.color = value;
             },
             enumerable: true,
             configurable: true

@@ -20,8 +20,8 @@ function createMapEditor() {
     var rows = mapData.length;
     var cols = mapData[0].length;
 
-    for (var col = 0; col < rows; col++) {
-        for (var row = 0; row < cols; row++) {
+    for (var row = 0; row < rows; row++) {
+        for (var col = 0; col < cols; col++) {
             var tile = new editor.Tile();
             tile.setWalkable(mapData[row][col]);
             tile.x = col * editor.GRID_PIXEL_WIDTH;
@@ -31,11 +31,12 @@ function createMapEditor() {
             tile.width = editor.GRID_PIXEL_WIDTH;
             tile.height = editor.GRID_PIXEL_HEIGHT;
             world.addChild(tile);
-
+           
 
             eventCore.register(tile, events.displayObjectRectHitTest, onTileClick);
         }
     }
+
     return world;
 
 }
@@ -47,9 +48,10 @@ function onTileClick(tile: editor.Tile) {
     
     stage.addChild(tileState(tile));
     picClick(tile);
+    radioClick(tile);
     
     console.log(tile);
-    mapData[tile.ownedRow][tile.ownedCol] = mapData[tile.ownedRow][tile.ownedCol] ? 0 : 1;
+    //mapData[tile.ownedRow][tile.ownedCol] = mapData[tile.ownedRow][tile.ownedCol] ? 0 : 1;
     //tile.setWalkable(mapData[tile.ownedRow][tile.ownedCol]);
     console.log(tile.ownedRow + " " + tile.ownedCol + " " + mapData[tile.ownedRow][tile.ownedCol]);  
 }
@@ -59,15 +61,16 @@ var SaveHitTest = (localPoint: math.Point, displayObject: render.DisplayObject) 
         return true;
 }
 
+        
 function tileState(tile: editor.Tile) {
     var Panel = new render.DisplayObjectContainer();
     Panel.x = 550;
     Panel.y = 50;
     
     var BackGround = new render.Rect();
-    BackGround.width = 150;
+    BackGround.width = 210;
     BackGround.height = 50;
-    BackGround.color = '#bee4f0';
+    BackGround.color = '#b7b7b7';
     Panel.addChild(BackGround);
     
     var x = tile.ownedRow + 1;
@@ -97,6 +100,7 @@ function SetpicBtn() {
     return picPanel;
 }
 
+
 function picClick(tile: editor.Tile) {
     picBtn[0].onClick = () =>{
         tile.setWalkable(0);
@@ -121,6 +125,18 @@ function picClick(tile: editor.Tile) {
     }
     picBtn[7].onClick = () =>{
         tile.setWalkable(7);
+    }
+}
+
+function radioClick(tile: editor.Tile) {
+    var count = 0;
+    radioBtn.onClick = () =>{
+        count++;
+        if(count%2 == 1){
+            radioBtn.text = "不可走";
+        }else{
+            radioBtn.text = "可走";
+        }
     }
 }
 
@@ -153,6 +169,15 @@ saveButton.text = "save";
 saveButton.x = 600;
 saveButton.y = 200;
 
+var radioBtn = new ui.Button();
+radioBtn.width = 100;
+radioBtn.height = 30;
+radioBtn.y = 110;
+radioBtn.x = 550;
+radioBtn.text = "可走";
+radioBtn.color = '#b7b7b7';
+stage.addChild(radioBtn);   
+
 var mapEditor = createMapEditor();
 stage.addChild(mapEditor);
 stage.addChild(saveButton);
@@ -161,6 +186,7 @@ stage.addChild(saveButton);
 //var panel = new editor.ControlPanel();//UI�༭��
 //panel.x = 300;
 //stage.addChild(panel);
+
 
 var ResPanel = SetpicBtn();
 ResPanel.x = 0;
