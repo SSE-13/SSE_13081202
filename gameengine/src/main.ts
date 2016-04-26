@@ -46,10 +46,11 @@ function createMapEditor() {
 function onTileClick(tile: editor.Tile) {
     
     stage.addChild(tileState(tile));
+    picClick(tile);
     
     console.log(tile);
     mapData[tile.ownedRow][tile.ownedCol] = mapData[tile.ownedRow][tile.ownedCol] ? 0 : 1;
-    tile.setWalkable(mapData[tile.ownedRow][tile.ownedCol]);
+    //tile.setWalkable(mapData[tile.ownedRow][tile.ownedCol]);
     console.log(tile.ownedRow + " " + tile.ownedCol + " " + mapData[tile.ownedRow][tile.ownedCol]);  
 }
 
@@ -94,6 +95,33 @@ function SetpicBtn() {
         picPanel.addChild(picBtn[i]);
     }
     return picPanel;
+}
+
+function picClick(tile: editor.Tile) {
+    picBtn[0].onClick = () =>{
+        tile.setWalkable(0);
+    }
+    picBtn[1].onClick = () =>{
+        tile.setWalkable(1);
+    }
+    picBtn[2].onClick = () =>{
+        tile.setWalkable(2);
+    }
+    picBtn[3].onClick = () =>{
+        tile.setWalkable(3);
+    }
+    picBtn[4].onClick = () =>{
+        tile.setWalkable(4);
+    }
+    picBtn[5].onClick = () =>{
+        tile.setWalkable(5);
+    }
+    picBtn[6].onClick = () =>{
+        tile.setWalkable(6);
+    }
+    picBtn[7].onClick = () =>{
+        tile.setWalkable(7);
+    }
 }
 
 function onSaveClick() {

@@ -28,10 +28,38 @@ var editor;
             _super.call(this);
         }
         Tile.prototype.setWalkable = function (value) {
-            this.color = value ? "#0000FF" : "#FF0000";
+            //this.color = value ? "#0000FF" : "#FF0000";
+            switch (value) {
+                case 0:
+                    this.source = "pic1.jpg";
+                    break;
+                case 1:
+                    this.source = "pic2.jpg";
+                    break;
+                case 2:
+                    this.source = "pic3.jpg";
+                    break;
+                case 3:
+                    this.source = "pic4.jpg";
+                    break;
+                case 4:
+                    this.source = "pic5.jpg";
+                    break;
+                case 5:
+                    this.source = "pic6.jpg";
+                    break;
+                case 6:
+                    this.source = "pic7.jpg";
+                    break;
+                case 7:
+                    this.source = "pic8.jpg";
+                    break;
+                default:
+                    break;
+            }
         };
         return Tile;
-    }(render.Rect));
+    }(render.Bitmap));
     editor.Tile = Tile;
     var ControlPanel = (function (_super) {
         __extends(ControlPanel, _super);

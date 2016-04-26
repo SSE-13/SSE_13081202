@@ -35,9 +35,10 @@ function createMapEditor() {
 }
 function onTileClick(tile) {
     stage.addChild(tileState(tile));
+    picClick(tile);
     console.log(tile);
     mapData[tile.ownedRow][tile.ownedCol] = mapData[tile.ownedRow][tile.ownedCol] ? 0 : 1;
-    tile.setWalkable(mapData[tile.ownedRow][tile.ownedCol]);
+    //tile.setWalkable(mapData[tile.ownedRow][tile.ownedCol]);
     console.log(tile.ownedRow + " " + tile.ownedCol + " " + mapData[tile.ownedRow][tile.ownedCol]);
 }
 var SaveHitTest = function (localPoint, displayObject) {
@@ -76,6 +77,32 @@ function SetpicBtn() {
         picPanel.addChild(picBtn[i]);
     }
     return picPanel;
+}
+function picClick(tile) {
+    picBtn[0].onClick = function () {
+        tile.setWalkable(0);
+    };
+    picBtn[1].onClick = function () {
+        tile.setWalkable(1);
+    };
+    picBtn[2].onClick = function () {
+        tile.setWalkable(2);
+    };
+    picBtn[3].onClick = function () {
+        tile.setWalkable(3);
+    };
+    picBtn[4].onClick = function () {
+        tile.setWalkable(4);
+    };
+    picBtn[5].onClick = function () {
+        tile.setWalkable(5);
+    };
+    picBtn[6].onClick = function () {
+        tile.setWalkable(6);
+    };
+    picBtn[7].onClick = function () {
+        tile.setWalkable(7);
+    };
 }
 function onSaveClick() {
     console.log("saving");

@@ -88,7 +88,7 @@ module render {
 
     export class DisplayObjectContainer extends DisplayObject {
 
-
+        
         children: Array<DisplayObject>
 
         constructor() {
