@@ -28,6 +28,7 @@ function createMapEditor() {
             tile.width = editor.GRID_PIXEL_WIDTH;
             tile.height = editor.GRID_PIXEL_HEIGHT;
             world.addChild(tile);
+            map_tile.push(tile);
             eventCore.register(tile, events.displayObjectRectHitTest, onTileClick);
         }
     }
@@ -38,7 +39,7 @@ function onTileClick(tile) {
     picClick(tile);
     radioClick(tile);
     console.log(tile);
-    //mapData[tile.ownedRow][tile.ownedCol] = mapData[tile.ownedRow][tile.ownedCol] ? 0 : 1;
+    mapData[tile.ownedRow][tile.ownedCol] = mapData[tile.ownedRow][tile.ownedCol] ? 0 : 1;
     //tile.setWalkable(mapData[tile.ownedRow][tile.ownedCol]);
     console.log(tile.ownedRow + " " + tile.ownedCol + " " + mapData[tile.ownedRow][tile.ownedCol]);
 }
@@ -81,27 +82,43 @@ function SetpicBtn() {
 }
 function picClick(tile) {
     picBtn[0].onClick = function () {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(0);
     };
     picBtn[1].onClick = function () {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(1);
     };
     picBtn[2].onClick = function () {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(2);
     };
     picBtn[3].onClick = function () {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(3);
     };
     picBtn[4].onClick = function () {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(4);
     };
     picBtn[5].onClick = function () {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(5);
     };
     picBtn[6].onClick = function () {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(6);
     };
     picBtn[7].onClick = function () {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(7);
     };
 }
@@ -122,6 +139,34 @@ function onSaveClick() {
     console.log("saving");
     writeFile();
 }
+function Undo() {
+    var undobutton = new render.DisplayObjectContainer();
+    undobutton.width = 55;
+    undobutton.height = 30;
+    var Background = new render.Rect();
+    Background.width = 55;
+    Background.height = 30;
+    Background.color = '#F0FF0F';
+    var title = new render.TextField();
+    title.text = 'Undo';
+    undobutton.addChild(Background);
+    undobutton.addChild(title);
+    eventCore.register(undobutton, events.displayObjectRectHitTest, onUndoButtonClick);
+    return undobutton;
+}
+function onUndoButtonClick() {
+    if (invoker.canUndo()) {
+        invoker.undo();
+        var row = invoker.new_command.new_row;
+        var col = invoker.new_command.new_col;
+        var num = invoker.new_command.new_num;
+        for (var i = 0; i < map_tile.length; i++) {
+            if (map_tile[i].ownedRow == row && map_tile[i].ownedCol == col) {
+                map_tile[i].setWalkable(num);
+            }
+        }
+    }
+}
 var storage = data.Storage.getInstance();
 storage.readFile();
 var mapData = storage.mapData;
@@ -129,6 +174,11 @@ var renderCore = new render.RenderCore();
 var eventCore = events.EventCore.getInstance();
 eventCore.init();
 var stage = new render.DisplayObjectContainer();
+var invoker = new command.Invoker();
+invoker.init();
+var map_tile = new Array();
+var undo = Undo();
+undo.x = 600;
 var button = new render.Rect();
 stage.addChild(button);
 button.x = 600;
@@ -151,6 +201,7 @@ stage.addChild(radioBtn);
 var mapEditor = createMapEditor();
 stage.addChild(mapEditor);
 stage.addChild(saveButton);
+stage.addChild(undo);
 //var panel = new editor.ControlPanel();//UI�༭��
 //panel.x = 300;
 //stage.addChild(panel);

@@ -31,6 +31,7 @@ function createMapEditor() {
             tile.width = editor.GRID_PIXEL_WIDTH;
             tile.height = editor.GRID_PIXEL_HEIGHT;
             world.addChild(tile);
+            map_tile.push(tile);
            
 
             eventCore.register(tile, events.displayObjectRectHitTest, onTileClick);
@@ -51,7 +52,7 @@ function onTileClick(tile: editor.Tile) {
     radioClick(tile);
     
     console.log(tile);
-    //mapData[tile.ownedRow][tile.ownedCol] = mapData[tile.ownedRow][tile.ownedCol] ? 0 : 1;
+    mapData[tile.ownedRow][tile.ownedCol] = mapData[tile.ownedRow][tile.ownedCol] ? 0 : 1;
     //tile.setWalkable(mapData[tile.ownedRow][tile.ownedCol]);
     console.log(tile.ownedRow + " " + tile.ownedCol + " " + mapData[tile.ownedRow][tile.ownedCol]);  
 }
@@ -102,28 +103,44 @@ function SetpicBtn() {
 
 
 function picClick(tile: editor.Tile) {
-    picBtn[0].onClick = () =>{
+    picBtn[0].onClick = () => {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(0);
     }
-    picBtn[1].onClick = () =>{
+    picBtn[1].onClick = () => {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(1);
     }
-    picBtn[2].onClick = () =>{
+    picBtn[2].onClick = () => {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(2);
     }
-    picBtn[3].onClick = () =>{
+    picBtn[3].onClick = () => {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(3);
     }
-    picBtn[4].onClick = () =>{
+    picBtn[4].onClick = () => {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(4);
     }
-    picBtn[5].onClick = () =>{
+    picBtn[5].onClick = () => {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(5);
     }
-    picBtn[6].onClick = () =>{
+    picBtn[6].onClick = () => {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(6);
     }
-    picBtn[7].onClick = () =>{
+    picBtn[7].onClick = () => {
+        var pos = new command.CommandA(tile.ownedRow, tile.ownedCol, tile.n);
+        invoker.setCommand(pos);
         tile.setWalkable(7);
     }
 }
@@ -146,6 +163,50 @@ function onSaveClick() {
     writeFile();
 }
 
+function Undo() {
+
+    var undobutton = new render.DisplayObjectContainer();
+    undobutton.width = 55;
+    undobutton.height = 30;
+    var Background = new render.Rect();
+    Background.width = 55;
+    Background.height = 30;
+    Background.color = '#F0FF0F';
+
+    var title = new render.TextField();
+    title.text = 'Undo';
+
+    undobutton.addChild(Background);
+    undobutton.addChild(title);
+
+    eventCore.register(undobutton, events.displayObjectRectHitTest, onUndoButtonClick);
+
+    return undobutton;
+
+}
+function onUndoButtonClick() {
+
+    if (invoker.canUndo()) {
+
+        invoker.undo();
+
+        var row = invoker.new_command.new_row;
+        var col = invoker.new_command.new_col;
+        var num = invoker.new_command.new_num;
+
+
+        for (var i = 0; i < map_tile.length; i++) {
+            if (map_tile[i].ownedRow == row && map_tile[i].ownedCol == col) {
+                map_tile[i].setWalkable(num);
+            }
+
+        }
+    }
+
+
+
+}
+
 var storage = data.Storage.getInstance();
 storage.readFile();
 var mapData = storage.mapData;
@@ -156,6 +217,15 @@ var eventCore = events.EventCore.getInstance();
 eventCore.init();
 
 var stage = new render.DisplayObjectContainer();
+
+
+var invoker = new command.Invoker();
+invoker.init();
+
+var map_tile = new Array();
+
+var undo = Undo();
+undo.x = 600;
 
 var button = new render.Rect();
 stage.addChild(button);
@@ -182,7 +252,7 @@ stage.addChild(radioBtn);
 var mapEditor = createMapEditor();
 stage.addChild(mapEditor);
 stage.addChild(saveButton);
-
+stage.addChild(undo);
 
 //var panel = new editor.ControlPanel();//UI�༭��
 //panel.x = 300;
